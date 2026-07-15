@@ -1,8 +1,9 @@
 (function () {
+  var LANGS = ['ja', 'en', 'zh'];
   function apply(l) {
-    var en = l === 'en';
-    document.documentElement.classList.toggle('lang-en-active', en);
-    document.documentElement.setAttribute('lang', en ? 'en' : 'ja');
+    if (LANGS.indexOf(l) < 0) l = 'ja';
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l === 'zh' ? 'zh-Hant' : l);
     document.querySelectorAll('.langbtns button').forEach(function (b) {
       b.classList.toggle('active', b.dataset.lang === l);
     });
